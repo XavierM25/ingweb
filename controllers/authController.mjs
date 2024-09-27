@@ -32,7 +32,7 @@ export class AuthController{
                     sameSite: 'lax',
                     maxAge: 1000 * 60 * 60
                 })
-                .send({user});
+                .json({message: 'Usuario autenticado'});
         } catch (error) {
             res.status(401).json({message: error.message});
         }
