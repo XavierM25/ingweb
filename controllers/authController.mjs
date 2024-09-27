@@ -1,5 +1,5 @@
-import { AuthModel } from "../models/authModel.js";
-import { SECRET_KEY } from "../config/config.js";
+import { AuthModel } from "../models/authModel.mjs";
+import { SECRET_KEY } from "../config/config.mjs";
 import jwt from "jsonwebtoken";
 
 export class AuthController{

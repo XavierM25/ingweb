@@ -1,5 +1,5 @@
-import userSchema from "../schemas/userSchema.js";
-import subscriptionSchema from "../schemas/subscriptionSchema.js";
+import userSchema from "../schemas/userSchema.mjs";
+import subscriptionSchema from "../schemas/subscriptionSchema.mjs";
 
 export class SubModel{
     static async subscribe({_id, type}){

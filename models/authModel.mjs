@@ -1,6 +1,6 @@
-import userSchema from "../schemas/userSchema.js";
+import userSchema from "../schemas/userSchema.mjs";
 import bcrypt from "bcrypt";
-import { SALT_ROUNDS } from "../config/config.js";
+import { SALT_ROUNDS } from "../config/config.mjs";
 
 export class AuthModel{
     static async register({username, first_name, last_name, email, password}){

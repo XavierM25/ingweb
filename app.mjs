@@ -1,12 +1,12 @@
 import e from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import userRouter from "./routes/userRoutes.js";
+import userRouter from "./routes/userRoutes.mjs";
 import subRouter from "./routes/subRoutes.mjs";
-import authRouter from "./routes/authRoutes.js";
-import { PORT, ALLOWED_ORIGINS } from "./config/config.js";
-import { database } from "./config/database.js";
-import { authMiddleware } from "./middlewares/authMiddleware.js";
+import authRouter from "./routes/authRoutes.mjs";
+import { PORT, ALLOWED_ORIGINS } from "./config/config.mjs";
+import { database } from "./config/database.mjs";
+import { authMiddleware } from "./middlewares/authMiddleware.mjs";
 
 const app = e();
 database.connect();

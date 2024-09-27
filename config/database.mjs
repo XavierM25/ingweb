@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { DB_MONGO } from "./config.js";
+import { DB_MONGO } from "./config.mjs";
 
 export class database{
     static async connect(){

@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { SECRET_KEY } from "../config/config.js";
+import { SECRET_KEY } from "../config/config.mjs";
 
 export function authMiddleware(req,res,next) {
     const token = req.cookies.access_token;
