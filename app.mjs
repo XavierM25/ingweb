@@ -17,10 +17,9 @@ app.use(cookieParser());
 app.use(authMiddleware);
 app.disable('x-powered-by');
 
-
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
-app.use('/api/subscribe', subRouter);
+app.use('/api/sub', subRouter);
 
 app.listen(PORT, () => {
     console.log(`El servidor esta funcionando en: http://localhost:${PORT}`);
