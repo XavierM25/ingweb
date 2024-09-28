@@ -27,7 +27,8 @@ export class AuthController{
             const token = jwt.sign({id: user._id, username: user.userCreated}, SECRET_KEY,{
                 expiresIn: '1h'
             });
-            res.cookie('access_token', token, {
+            res.status(200)
+            .cookie('access_token', token, {
                     httpOnly: true,
                     sameSite: 'lax',
                     maxAge: 1000 * 60 * 60

@@ -11,8 +11,8 @@ import { authMiddleware } from "./middlewares/authMiddleware.mjs";
 const app = e();
 database.connect();
 
-app.use(e.json());
 app.use(cors({origin: ALLOWED_ORIGINS, credentials: true}));
+app.use(e.json());
 app.use(cookieParser());
 app.use(authMiddleware);
 app.disable('x-powered-by');
