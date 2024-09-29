@@ -5,6 +5,6 @@ const authRouter = e.Router();
 
 authRouter.post('/register', AuthController.registerUser);
 authRouter.post('/login', AuthController.loginUser);
-authRouter.get('/verify', AuthController.verifyToken);
+authRouter.get('/verify-token', AuthController.verifyToken);
 
 export default authRouter;

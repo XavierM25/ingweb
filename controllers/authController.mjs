@@ -46,7 +46,7 @@ export class AuthController{
         }
         try {
             await jwt.verify(token, SECRET_KEY);
-            res.json({message: 'Usuario autenticado'});
+            res.json(true);
         } catch (error) {
             res.status(401).json({message: error.message});
         }
