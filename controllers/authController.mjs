@@ -9,8 +9,8 @@ export class AuthController{
         }
         const {username, first_name, last_name, email, password} = req.body;
         try {
-            const userCreated = await AuthModel.register({username,first_name,last_name,email,password});
-            res.send(userCreated);
+            await AuthModel.register({username,first_name,last_name,email,password});
+            res.json({message: 'Usuario registrado'});
         } catch (error) {
             res.status(500).json({message: error.message});
         }

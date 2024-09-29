@@ -20,7 +20,6 @@ export class AuthModel{
 
         const isValid = await bcrypt.compare(password, existingUser.password);
         if(!isValid){throw new Error('contraseña incorrecta')};
-
         return existingUser;
     }
 
