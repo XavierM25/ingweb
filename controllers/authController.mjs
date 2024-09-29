@@ -38,4 +38,17 @@ export class AuthController{
             res.status(401).json({message: error.message});
         }
     }
+
+    static async verifyToken(req,res){
+        const token = req.cookies.access_token;
+        if (!token) {
+            return res.status(401).json({message: 'Usuario no autenticado'});
+        }
+        try {
+            await jwt.verify(token, SECRET_KEY);
+            res.json({message: 'Usuario autenticado'});
+        } catch (error) {
+            res.status(401).json({message: error.message});
+        }
+    }
 }
