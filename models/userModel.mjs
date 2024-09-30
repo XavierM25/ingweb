@@ -15,4 +15,11 @@ export class UserModel{
             creation_date: user.creation_date
         };
     }
+
+    static async setUsername({_id, username}){
+        const user = await userSchema.findById({_id});
+        if(!user){throw new Error('El usuario no existe')};
+        user.username = username;
+        return {username};
+    }
 }
