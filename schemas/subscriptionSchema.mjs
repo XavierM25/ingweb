@@ -8,7 +8,7 @@ const SubscriptionSchema = mongoose.Schema({
     },
     type:{
         type: String,
-        enum: ['monthly', 'bimonthly', 'quarterly', 'annual'],
+        enum: ['monthly', 'biannual','annual'],
         required: true
     },
     start_date:{

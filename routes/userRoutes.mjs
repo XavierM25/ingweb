@@ -4,6 +4,6 @@ import { UserController } from "../controllers/userController.mjs";
 const userRouter = e.Router();
 
 userRouter.get('/get-info', UserController.getUser);
-userRouter.post('/set-username', UserController.setUsername)
+userRouter.patch('/update', UserController.updateUser);
 
 export default userRouter;

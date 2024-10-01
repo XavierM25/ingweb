@@ -12,7 +12,7 @@ export class SubModel{
         await newSubscription.save();
 
         await userSchema.findByIdAndUpdate({_id}, {
-            $push: { suscripciones: newSubscription._id }
+            $push: { subscription: newSubscription._id }
           });
         return newSubscription;
     }

@@ -39,6 +39,19 @@ export class AuthController{
         }
     }
 
+    static async logout(req,res){
+        try {
+            res.clearCookie('access_token',{
+                httpOnly: true,
+                sameSite: 'lax'
+            })
+            .status(200)
+            .json({message: 'Sesión cerrada'});
+        } catch (error) {
+            res.status(500).json({message: error.message});
+        }
+    }
+
     static async verifyToken(req,res){
         const token = req.cookies.access_token;
         if (!token) {

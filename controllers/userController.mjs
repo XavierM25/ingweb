@@ -7,21 +7,21 @@ export class UserController{
         const {_id} = req.user;
         try {
             const user = await UserModel.getUser({_id});
-            res.status(200).json({user});
+            res.status(200).json(user);
         } catch (error) {
             res.status(400).json({error: error.message});
         }
     }
 
-    static async setUsername(req,res){
+    static async updateUser(req, res){
         if (!req.user || !req.user._id) {  
             return res.status(401).json({ message: 'No autenticado' });
         }
         const {_id} = req.user;
-        const {username} = req.body;
+        const data = req.body;
         try {
-            const user = await UserModel.setUsername({_id, username});
-            res.status(200).json({user});
+            const updatedUser = await UserModel.updateUser({_id, data});
+            res.status(200).json(updatedUser);
         } catch (error) {
             res.status(400).json({error: error.message});
         }
