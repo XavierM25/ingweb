@@ -7,9 +7,9 @@ export class AuthController{
         if (!req.body) {
             return res.status(400).json({message: 'Falta el cuerpo de la solicitud'});
         }
-        const {username, first_name, last_name, email, password} = req.body;
+        const {username, first_name, last_name, age, email, password} = req.body;
         try {
-            await AuthModel.register({username,first_name,last_name,email,password});
+            await AuthModel.register({username,first_name,last_name,age,email,password});
             res.json({message: 'Usuario registrado'});
         } catch (error) {
             res.status(500).json({message: error.message});
@@ -55,7 +55,7 @@ export class AuthController{
     static async verifyToken(req,res){
         const token = req.cookies.access_token;
         if (!token) {
-            return res.status(401).json({message: 'Usuario no autenticado'});
+            return res.status(401).json(false);
         }
         try {
             await jwt.verify(token, SECRET_KEY);
