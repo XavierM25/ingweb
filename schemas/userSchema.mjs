@@ -14,6 +14,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    age:{
+        type: Number,
+        required: true
+    },
     role:{
         type: String,
         enum: ['teacher', 'student', 'administrator'],
@@ -25,6 +29,10 @@ const UserSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    isVerified:{
+        type: Boolean,
+        default: false
+    },
     password:{
         type: String,
         required: true
@@ -35,7 +43,8 @@ const UserSchema = new mongoose.Schema({
     },
     subscription:{
         type: mongoose.SchemaTypes.ObjectId,
-        ref: 'Subscription'
+        ref: 'Subscription',
+        default: null
     },
     creation_date:{
         type: Date,

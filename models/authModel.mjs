@@ -3,13 +3,13 @@ import bcrypt from "bcrypt";
 import { SALT_ROUNDS } from "../config/config.mjs";
 
 export class AuthModel{
-    static async register({username, first_name, last_name, email, password}){
+    static async register({username, first_name, last_name, age, email, password}){
         const existingUser = await userSchema.findOne({$or: [{username}, {email}]});
         if (existingUser) {throw new Error('El usuario o el correo están en uso')};
         if (password < 9) {throw new Error('La contraseña debe ser mayor a 8 dígitos')};
 
         const hashedPassword = await bcrypt.hash(password, parseInt(SALT_ROUNDS));
-        const newUser = new userSchema({username, password: hashedPassword, first_name, last_name, email});
+        const newUser = new userSchema({username, password: hashedPassword, first_name, age, last_name, email});
         await newUser.save();
         return newUser;
     }
@@ -17,11 +17,25 @@ export class AuthModel{
     static async login({email, password}){
         const existingUser = await userSchema.findOne({email});
         if(!existingUser){throw new Error('El usuario no existe')};
-
+        if (!existingUser.isVerified) {
+             {throw new Error('Por favor, verifica tu correo antes de iniciar sesión') };
+        }
         const isValid = await bcrypt.compare(password, existingUser.password);
         if(!isValid){throw new Error('contraseña incorrecta')};
         return existingUser;
     }
 
+    static async verifyEmail({_id}){
+        const user = await userSchema.findById({_id});
+        if (!user) {
+            {throw new Error('El usuario no existe')};
+        }
+        if (user.isVerified) {
+            {throw new Error('El usuario ya está verificado')};
+        }
+        user.isVerified = true;
+        await user.save();
+        return true;
+    }
     
 }
