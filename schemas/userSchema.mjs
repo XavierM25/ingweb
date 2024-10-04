@@ -35,7 +35,7 @@ const UserSchema = new mongoose.Schema({
     },
     profile_picture:{
         type: String,
-        default: 'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png'
+        default: 'https://i.imgur.com/RiGVJfC.png'
     },
     subscription:{
         type: mongoose.SchemaTypes.ObjectId,
