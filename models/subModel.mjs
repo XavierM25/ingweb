@@ -23,11 +23,8 @@ export class SubModel{
             case 'monthly':
                 end_date.setMonth(end_date.getMonth() + 1);
                 break;
-            case 'bimonthly':
-                end_date.setMonth(end_date.getMonth() + 2);
-                break;
-            case 'quarterly':
-                end_date.setMonth(end_date.getMonth() + 3);
+            case 'biannual':
+                end_date.setMonth(end_date.getMonth() + 6);
                 break;
             case 'annual':
                 end_date.setFullYear(end_date.getFullYear() + 1);
