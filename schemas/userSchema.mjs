@@ -20,7 +20,7 @@ const UserSchema = new mongoose.Schema({
     },
     role:{
         type: String,
-        enum: ['teacher', 'student', 'administrator'],
+        enum: ['teacher', 'student', 'admin'],
         default: 'student',
         required: true
     },
@@ -38,8 +38,13 @@ const UserSchema = new mongoose.Schema({
         default: 'https://i.imgur.com/RiGVJfC.png'
     },
     subscription:{
-        type: mongoose.SchemaTypes.ObjectId,
-        ref: 'Subscription'
+        type: [mongoose.SchemaTypes.ObjectId],
+        ref: 'UserSubscription',
+        default: []
+    },
+    scholarship:{
+        type: Boolean,
+        default: false
     },
     creation_date:{
         type: Date,

@@ -1,29 +1,18 @@
 import mongoose from "mongoose";
 
 const SubscriptionSchema = mongoose.Schema({
-    userID: {
-        type: mongoose.SchemaTypes.ObjectId,
-        ref:'User',
-        required: true
-    },
-    type:{
+    type: {
         type: String,
-        enum: ['monthly', 'biannual','annual'],
         required: true
     },
-    start_date:{
-        type: Date,
+    price:{
+        type: Number,
         required: true
     },
-    end_date:{
-        type: Date,
+    max_beneficiaries:{
+        type: Number,
         required: true
     },
-    status:{
-        type: String,
-        enum: ['active', 'canceled', 'expired'],
-        default: 'active'
-    }
 });
 
 export default mongoose.model('Subscription', SubscriptionSchema);
