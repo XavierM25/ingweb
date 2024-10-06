@@ -11,11 +11,11 @@ const UserSubscriptionSchema = mongoose.Schema({
         ref: 'Subscription',
         required: true
     },
-    beneficiary_user_id:{
+    beneficiary_user_id:[{
         type: mongoose.SchemaTypes.ObjectId,
         ref: 'User',
-        default: null,
-    },
+        default: [],
+    }],
     start_date:{
         type: Date,
         required: true

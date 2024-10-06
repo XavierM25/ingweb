@@ -64,4 +64,30 @@ export class SubModel {
         };
     }
 
+    static async addBeneficiary({_id, beneficiary_id}){
+        const owner = await userSchema.findById(_id);
+        if(!owner){throw new Error('El usuario no existe')};
+
+        const beneficiary = await userSchema.findById(beneficiary_id);
+        if(!beneficiary){throw new Error('El beneficiario no existe')};
+
+        const activeSubscription = await userSubscriptionSchema.findOne({user_id: _id, status: 'active'}).populate('subscription_id');
+        if(!activeSubscription){throw new Error('El usuario no tiene subscripción activa')};
+
+        const {max_beneficiaries} = activeSubscription.subscription_id;
+        if(activeSubscription.beneficiary_user_id.length >= max_beneficiaries){throw new Error('Máximo de beneficiarios alcanzado')};
+        if(activeSubscription.beneficiary_user_id.includes(beneficiary_id)){throw new Error('El beneficiario ya está incluido')};
+
+        activeSubscription.beneficiary_user_id.push(beneficiary_id);
+        await activeSubscription.save();
+
+        const beneficiaryUser = await userSchema.findById(beneficiary_id);
+        if (!beneficiary) {throw new Error('El beneficiario no existe')};
+
+        beneficiaryUser.subscription = activeSubscription._id;
+        await beneficiaryUser.save();
+
+        return activeSubscription;
+    }
+
 }

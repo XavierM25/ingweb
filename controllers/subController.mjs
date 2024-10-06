@@ -42,4 +42,18 @@ export class SubController{
             res.status(500).json({message: error.message});
         }
     }
+
+    static async addBeneficiary(req,res){
+        if (!req.user || !req.user._id) {  
+            return res.status(401).json({ message: 'No autenticado' });
+        }
+        const {_id} = req.user;
+        const {beneficiary_id} = req.body;
+        try {
+            const beneficiary = await SubModel.addBeneficiary({_id, beneficiary_id});
+            res.status(200).json(beneficiary);
+        } catch (error) {
+            res.status(500).json({message: error.message});
+        }
+    }
 }
