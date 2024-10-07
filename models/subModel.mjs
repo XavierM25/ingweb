@@ -54,13 +54,15 @@ export class SubModel {
 
         const subscriptionType = await subscriptionSchema.findById({ _id: subscription.subscription_id });
         return {
+            owner_id: subscription.user_id,
             subscription_id: subscription.subscription_id,
             type: subscriptionType.type,
             start_date: subscription.start_date,
             end_date: subscription.end_date,
             status: subscription.status,
             price: subscriptionType.price,
-            max_beneficiaries: subscriptionType.max_beneficiaries
+            max_beneficiaries: subscriptionType.max_beneficiaries,
+            beneficiary_user_id: subscription.beneficiary_user_id
         };
     }
 
