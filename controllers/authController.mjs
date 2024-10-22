@@ -7,9 +7,9 @@ export class AuthController{
         if (!req.body) {
             return res.status(400).json({message: 'Falta el cuerpo de la solicitud'});
         }
-        const {username, first_name, last_name, age, email, password} = req.body;
+        const {username, first_name, last_name, birthdate, email, password} = req.body;
         try {
-            await AuthModel.register({username,first_name,last_name,age,email,password});
+            await AuthModel.register({username,first_name,last_name,birthdate,email,password});
             res.json({message: 'Usuario registrado'});
         } catch (error) {
             res.status(500).json({message: error.message});

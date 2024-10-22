@@ -3,13 +3,13 @@ import bcrypt from "bcrypt";
 import { SALT_ROUNDS } from "../config/config.mjs";
 
 export class AuthModel{
-    static async register({username, first_name, last_name, age, email, password}){
+    static async register({username, first_name, last_name, birthdate, email, password}){
         const existingUser = await userSchema.findOne({$or: [{username}, {email}]});
         if (existingUser) {throw new Error('El usuario o el correo están en uso')};
         if (password < 9) {throw new Error('La contraseña debe ser mayor a 8 dígitos')};
 
         const hashedPassword = await bcrypt.hash(password, parseInt(SALT_ROUNDS));
-        const newUser = new userSchema({username, password: hashedPassword, first_name, last_name, age, email});
+        const newUser = new userSchema({username, password: hashedPassword, first_name, last_name, birthdate, email});
         await newUser.save();
         return newUser;
     }
