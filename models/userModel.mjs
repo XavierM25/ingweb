@@ -1,5 +1,17 @@
 import userSchema from "../schemas/userSchema.mjs";
 export class UserModel{
+    static async getHeadersUser({_id}) {
+        const user = await userSchema.findById({_id});
+        if (!user) { throw new Error('El usuario no existe'); }
+        return {
+            _id: user._id,
+            username: user.username,
+            profile_picture: user.profile_picture,
+            first_name: user.first_name,
+            role: user.role            
+        }
+    }
+
     static async getUser({_id}){
         const user = await userSchema.findById({_id});
         if(!user){throw new Error('El usuario no existe')};
