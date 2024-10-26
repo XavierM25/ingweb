@@ -6,6 +6,11 @@ const adminSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    email:{
+        type: String,
+        required: true,
+        unique: true
+    },
     password: {
         type: String,
         required: true
@@ -17,8 +22,7 @@ const adminSchema = new mongoose.Schema({
     last_name:{
         type: String,
         required: true
-    },
-
+    }
 });
 
 
