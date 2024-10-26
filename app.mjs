@@ -14,7 +14,6 @@ database.connect();
 app.use(cors({origin: ALLOWED_ORIGINS, credentials: true}));
 app.use(e.json());
 app.use(cookieParser());
-app.use(authMiddleware);
 app.disable('x-powered-by');
 
 app.use('/api/user', userRouter);
