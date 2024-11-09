@@ -35,11 +35,18 @@ export class UserModel{
         if (data.email && await userSchema.findOne({ email: data.email, _id: { $ne: _id } })) {
             throw new Error('El correo electrónico ya está en uso');
         }
+        const notSupportedFields = ['role', 'creation_date', 'password'];
+
+        if (Object.keys(data).some(field => notSupportedFields.includes(field))) {
+            throw new Error('No se puede actualizar el campo solicitado');
+        }
+
         const updatedUser = await userSchema.findByIdAndUpdate(
             _id,
             {$set: data},
             {new: true, runValidators: true}
         );
+        
         return {
             _id: updatedUser._id,
             username: updatedUser.username,
