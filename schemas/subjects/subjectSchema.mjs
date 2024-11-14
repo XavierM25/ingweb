@@ -23,6 +23,7 @@ const SubjectSchema = moongose.Schema({
     },
     rate:{
         type: Number,
+        default: 0,
         required: true
     },
     level:{
@@ -40,6 +41,10 @@ const SubjectSchema = moongose.Schema({
     tags:{
         type: [String],
         required: false
+    },
+    created_at:{
+        type: Date,
+        default: Date.now()
     }
 });
 

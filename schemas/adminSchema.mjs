@@ -11,6 +11,16 @@ const adminSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    role:{
+        type: String,
+        required: true,
+        enum: ['admin', 'superadmin'],
+        default: 'admin'
+    },
+    profile_picture:{
+        type: String,
+        default: 'https://i.imgur.com/RiGVJfC.png'
+    },
     password: {
         type: String,
         required: true
@@ -21,6 +31,11 @@ const adminSchema = new mongoose.Schema({
     },
     last_name:{
         type: String,
+        required: true
+    },
+    creation_date:{
+        type: Date,
+        default: Date.now,
         required: true
     }
 });
