@@ -8,7 +8,8 @@ export class UploadModel{
                 cb(null, destinationPath);
             },
             filename: function (req, file, cb) {
-                cb(null, Date.now() + '-' + file.originalname);
+                const sanitizedFileName = file.originalname.replace(/\s+/g, '-');
+                cb(null, Date.now() + '-' + sanitizedFileName);
             }
         });
     }

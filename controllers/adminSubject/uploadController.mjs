@@ -1,5 +1,10 @@
 import { UploadModel } from "../../models/adminSubject/uploadModel.mjs";
 import multer from "multer";
+import { fileURLToPath } from 'url';
+import path from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export class UploadController{
 
@@ -15,6 +20,14 @@ export class UploadController{
             const fileURL = `${req.protocol}://${req.get('host')}/uploads/video/${req.file.filename}`;
             return res.status(200).json({message: "Archivo subido correctamente", file: req.file, fileURL: fileURL});
         });
+    }
+
+    static async getVideo(req,res){
+        const filePath = path.join(__dirname, 'uploads/video', req.params.filename);
+        res.sendFile(filePath, (err) => {
+        if (err) {
+            res.status(404).send('Archivo no encontrado');
+        }});
     }
 
 

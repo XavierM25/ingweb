@@ -12,6 +12,7 @@ import adminSubjectRouter from "./routes/adminSubject/subjectRoutes.mjs";
 import uploadSubjectRouter from "./routes/adminSubject/uploadRoutes.mjs";
 
 const app = e();
+
 database.connect();
 
 app.use(cors({
@@ -36,7 +37,6 @@ app.use('/api/admin-auth', adminAuthRouter);
 app.use('/api/admin', adminInfoRouter);
 app.use('/api/admin-subject', adminSubjectRouter);
 app.use('/api/admin-subject', uploadSubjectRouter);
-
 
 app.listen(PORT, () => {
     console.log(`El servidor esta funcionando en: http://localhost:${PORT}`);

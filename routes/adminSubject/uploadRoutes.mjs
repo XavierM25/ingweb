@@ -6,7 +6,7 @@ const uploadSubjectRouter = Router();
 uploadSubjectRouter.use(adminAuthMiddleware);
 
 uploadSubjectRouter.post('/uploadVideo', UploadController.uploadVideo);
-
+uploadSubjectRouter.get('/getVideo/:filename', UploadController.getVideo);
 
 
 export default uploadSubjectRouter;
