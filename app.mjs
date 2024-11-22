@@ -12,6 +12,7 @@ import adminSubjectRouter from "./routes/adminSubject/subjectRoutes.mjs";
 import uploadSubjectRouter from "./routes/adminSubject/uploadRoutes.mjs";
 import adminSectionRouter from "./routes/adminSubject/sectionRoutes.mjs";
 import adminSessionRouter from "./routes/adminSubject/sessionRoutes.mjs";
+import userSubjectRouter from "./routes/userSubject/subjectRoutes.mjs";
 
 const app = e();
 
@@ -35,6 +36,7 @@ app.disable('x-powered-by');
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/sub', subRouter);
+app.use('/api/user-subject', userSubjectRouter);
 
 app.use('/api/admin-auth', adminAuthRouter);
 app.use('/api/admin', adminInfoRouter);
