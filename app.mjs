@@ -13,6 +13,7 @@ import uploadSubjectRouter from "./routes/adminSubject/uploadRoutes.mjs";
 import adminSectionRouter from "./routes/adminSubject/sectionRoutes.mjs";
 import adminSessionRouter from "./routes/adminSubject/sessionRoutes.mjs";
 import userSubjectRouter from "./routes/userSubject/subjectRoutes.mjs";
+import userSessionRouter from "./routes/userSubject/sessionRoutes.mjs";
 
 const app = e();
 
@@ -37,6 +38,7 @@ app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/sub', subRouter);
 app.use('/api/user-subject', userSubjectRouter);
+app.use('/api/user-session', userSessionRouter);
 
 app.use('/api/admin-auth', adminAuthRouter);
 app.use('/api/admin', adminInfoRouter);
