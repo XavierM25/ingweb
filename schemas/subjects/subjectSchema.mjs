@@ -42,6 +42,11 @@ const SubjectSchema = moongose.Schema({
         type: [String],
         required: false
     },
+    is_active:{
+        type: Boolean,
+        default: true,
+        required: true
+    },
     created_at:{
         type: Date,
         default: Date.now()
