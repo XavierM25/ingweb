@@ -9,4 +9,13 @@ export class SubjectController{
             res.status(500).json({ message: error.message });
         }
     }
+
+    static async getSubjectById(req, res){
+        try {
+            const subject = await SubjectModel.getSubjectById(req.params.id);
+            res.status(200).json(subject);
+        } catch (error) {
+            res.status(500).json({ message: error.message });
+        }
+    }
 }
